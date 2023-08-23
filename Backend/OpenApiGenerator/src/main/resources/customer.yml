@@ -1,0 +1,95 @@
+openapi: 3.0.3
+info:
+  title: Addressbook
+  description: Addressbook
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080/api'
+paths:
+  /user:
+    get:
+      operationId: getUsers
+      summary: Retreive a list of all users
+      tags:
+        - Addressbook
+      responses:
+        200:
+          description: Successful response
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      operationId: createUser
+      summary: Create a new user
+      tags:
+        - Addressbook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        '201':
+          description: User created successfully
+
+  /user/{id}:
+    delete:
+      operationId: deleteUser
+      summary: Delete user by Id
+      tags:
+        - Addressbook
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int64
+          required: true
+      responses:
+        '204':
+          description: User deleted successfully
+        '404':
+          description: User not found
+    put:
+      operationId: updateUser
+      summary: Update user information by Id
+      tags:
+        - Addressbook
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int64
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        '200':
+          description: User updated successfully
+        '404':
+          description: User not found
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        email:
+          type: string
+          maxLength: 100
+        name:
+          type: string
+          maxLength: 100
+        age:
+          type: integer
