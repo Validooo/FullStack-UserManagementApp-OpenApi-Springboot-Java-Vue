@@ -22,12 +22,13 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
+	<!--	<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -54,6 +55,19 @@
 			<artifactId>jakarta.persistence-api</artifactId>
 			<version>3.1.0</version>
 		</dependency>
+		<!--
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+-->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -66,6 +80,12 @@
 			<version>0.2.6</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
 		<dependency>
 			<groupId>javax.annotation</groupId>
@@ -76,20 +96,41 @@
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.6.0</version>
+			<version>3.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
-			<version>2.6.0</version>
+			<version>3.0.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+
+		<!-- https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>2.2.15</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-models -->
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-models</artifactId>
+			<version>2.2.15</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-test</artifactId>
+			<version>3.1.2</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+
 
 
 	</dependencies>
@@ -103,7 +144,7 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>5.3.0</version>
+				<version>6.6.0</version>
 				<executions>
 					<execution>
 						<goals>
@@ -113,11 +154,14 @@
 							<inputSpec>${project.basedir}/src/main/resources/addressbook.yml</inputSpec>
 							<generatorName>spring</generatorName>
 							<configOptions>
-								<basePackage>com.openapi.OpenApiGenerator</basePackage>
-								<apiPackage>com.openapi.OpenApiGenerator.api</apiPackage>
-								<modelPackage>com.openapi.OpenApiGenerator.model</modelPackage>
-								<configPackage>com.openapi.OpenApiGenerator.config</configPackage>
-								<delegatePattern>true</delegatePattern>
+								<useBeanValidation>true</useBeanValidation>
+								<useClassLevelBeanValidation>false</useClassLevelBeanValidation>
+								<useTags>true</useTags>
+								<basePackage>com.openapi.OpenApiGeneratorr</basePackage>
+								<apiPackage>com.openapi.OpenApiGeneratorr.api</apiPackage>
+								<modelPackage>com.openapi.OpenApiGeneratorr.model</modelPackage>
+								<configPackage>com.openapi.OpenApiGeneratorr.config</configPackage>
+
 								<interfaceOnly>false</interfaceOnly>
 								<modelNameSuffix>Dto</modelNameSuffix>
 							</configOptions>
