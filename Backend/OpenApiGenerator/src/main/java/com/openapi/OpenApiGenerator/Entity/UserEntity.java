@@ -10,7 +10,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     private String name;
 
@@ -24,18 +24,18 @@ public class UserEntity {
 
     }
 
-    public UserEntity(Integer id, String name, String email, Integer age) {
+    public UserEntity(Long id, String name, String email, Integer age) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.age = age;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

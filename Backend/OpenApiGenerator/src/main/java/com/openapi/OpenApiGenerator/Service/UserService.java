@@ -4,8 +4,12 @@ import com.openapi.OpenApiGenerator.Entity.UserEntity;
 import com.openapi.OpenApiGenerator.Repository.UserRepository;
 import com.openapi.OpenApiGenerator.model.User;
 import io.swagger.models.auth.In;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,26 +21,55 @@ public class UserService {
        this.repository = repository;
    }
 
-   public UserEntity createUser(UserEntity entity){
-       repository.save(entity);
-       return entity;
+   public User createUser(User user){
+       UserEntity userEntity = new UserEntity(user.getId(),user.getName(),user.getEmail(),user.getAge());
+       repository.save(userEntity);
+       return user;
    }
 
-   public List<UserEntity> getUsers() {
-   return repository.findAll();
+   public List<User> getUsers() {
+       List<User> answer = new ArrayList<>();
+       List<UserEntity> userEntities = repository.findAll();
+       for (int i=0; i< userEntities.size(); i++){
+           answer.add(new User(userEntities.get(i).getId(),userEntities.get(i).getName(),userEntities.get(i).getAge(),userEntities.get(i).getEmail()));
+       }
+       return answer;
     }
 
-    public UserEntity getUserById(Integer id){
-       return  repository.findById(id).get();
+    public User getUserById(Integer id){
+        if(repository.existsById(id)) {
+            UserEntity userEntity=  repository.findById(id).get();
+            return new User(userEntity.getId(),userEntity.getName(),userEntity.getAge(),userEntity.getEmail());
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
     }
 
-    public void deleteUser(Integer id){
-       repository.deleteById(id);
+    public ResponseEntity<Void> deleteUser(Integer id){
+        if(repository.existsById(id)) {
+            repository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
-    public UserEntity updateUser(Integer id, UserEntity userEntity){
-    return  repository.save(userEntity);
+    public ResponseEntity<Void> updateUser(Integer id, User user){
+       if(repository.existsById(id)){
+           UserEntity userEntity= repository.findById(id).get();
+           userEntity.setName(user.getName());
+           userEntity.setEmail(user.getEmail());
+           userEntity.setAge(user.getAge());
+           repository.save(userEntity);
+       return new ResponseEntity<>(HttpStatus.OK);
+       }else{
+           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+       }
     }
+
+
+
 
 
 }
