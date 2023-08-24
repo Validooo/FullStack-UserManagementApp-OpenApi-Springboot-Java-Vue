@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b52e90d1-7f18-4c8a-a883-f6053d4cf752" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/OpenApiGeneratorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/OpenApiGeneratorApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/HelloWorld.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
