@@ -17,8 +17,8 @@
           <td>{{ user.age }}</td>
           <td>{{ user.email }}</td>
           <td>
-            <button @click="editUser(user)">Update</button>
-            <button @click="delete(user.id)">Delete</button>
+            <button @click="editUser(user)" class="update-button">Update</button>
+            <button @click="delete(user.id)" class="delete-button" >Delete</button>
           </td>
         </tr>
         
@@ -68,7 +68,7 @@ export default {
 
 .user-table th,
 .user-table td {
-  padding: 8px;
+  padding: 4px;
   text-align: left;
   border: 1px solid #ccc;
 }
@@ -82,15 +82,48 @@ export default {
   background-color: #f0f0f0;
 }
 
-button {
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: #fff;
+
+.update-button {
+  display: inline-block;
+  padding: 12px 20px;
+  margin: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+  background-color: #26a1ff;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.update-button:hover {
+  background-color: #1d84d3;
 }
 
-button:hover {
-  background-color: #0056b3;
+
+
+
+.delete-button {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+  background-color: #ff2929;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+
+.delete-button:hover {
+  background-color: #e41c1c;
+}
+
+.delete-button:active {
+  background-color: #fc0909;
+}
+
 </style>
