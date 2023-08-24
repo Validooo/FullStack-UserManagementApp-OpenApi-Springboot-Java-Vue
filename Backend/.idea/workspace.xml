@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b52e90d1-7f18-4c8a-a883-f6053d4cf752" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/OpenApiGeneratorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/OpenApiGeneratorApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,13 +36,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/walid/OneDrive/Desktop/OpenApi/Backend&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/walid/OneDrive/Desktop/OpenApi/Backend",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
+  <component name="RunManager" selected="Application.OpenApiGeneratorApplication">
+    <configuration name="OpenAPI2SpringBoot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.openapi.OpenApiGenerator.OpenAPI2SpringBoot" />
+      <module name="OpenApiGenerator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.openapi.OpenApiGenerator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OpenApiGeneratorApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.openapi.OpenApiGenerator.OpenApiGeneratorApplication" />
+      <module name="OpenApiGenerator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.openapi.OpenApiGenerator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.OpenApiGeneratorApplication" />
+        <item itemvalue="Application.OpenAPI2SpringBoot" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -46,5 +90,15 @@
       <updated>1692823676457</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.springframework.beans.factory.UnsatisfiedDependencyException" package="org.springframework.beans.factory" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

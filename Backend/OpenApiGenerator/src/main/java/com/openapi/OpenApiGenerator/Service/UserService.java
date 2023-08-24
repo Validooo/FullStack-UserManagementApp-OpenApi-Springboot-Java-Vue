@@ -1,8 +1,10 @@
+
+
 package com.openapi.OpenApiGenerator.Service;
 
 import com.openapi.OpenApiGenerator.Entity.UserEntity;
 import com.openapi.OpenApiGenerator.Repository.UserRepository;
-import com.openapi.OpenApiGenerator.model.User;
+import com.openapi.OpenApiGeneratorr.model.User;
 import io.swagger.models.auth.In;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,13 +35,14 @@ public class UserService {
        for (int i=0; i< userEntities.size(); i++){
            answer.add(new User(userEntities.get(i).getId(),userEntities.get(i).getName(),userEntities.get(i).getAge(),userEntities.get(i).getEmail()));
        }
-       return new ResponseEntity<>(answer, HttpStatus.NO_CONTENT);
+       return new ResponseEntity<>(answer, HttpStatus.OK);
     }
 
     public ResponseEntity<User> getUserById(Long id){
         if(repository.existsById(id)) {
             UserEntity userEntity=  repository.findById(id).get();
-            User user = new User(userEntity.getId(),userEntity.getName(),userEntity.getAge(),userEntity.getEmail());
+            User user = new User();
+        //    User user = new User(userEntity.getId(),userEntity.getName(),userEntity.getAge(),userEntity.getEmail());
             return new ResponseEntity<>(user, HttpStatus.NO_CONTENT);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
