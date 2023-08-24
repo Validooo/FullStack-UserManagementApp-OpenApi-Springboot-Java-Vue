@@ -21,32 +21,33 @@ public class UserService {
        this.repository = repository;
    }
 
-   public User createUser(User user){
+   public ResponseEntity<Void> createUser(User user){
        UserEntity userEntity = new UserEntity(user.getId(),user.getName(),user.getEmail(),user.getAge());
        repository.save(userEntity);
-       return user;
+       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
    }
 
-   public List<User> getUsers() {
+   public ResponseEntity<List<User>> getUsers() {
        List<User> answer = new ArrayList<>();
        List<UserEntity> userEntities = repository.findAll();
        for (int i=0; i< userEntities.size(); i++){
            answer.add(new User(userEntities.get(i).getId(),userEntities.get(i).getName(),userEntities.get(i).getAge(),userEntities.get(i).getEmail()));
        }
-       return answer;
+       return new ResponseEntity<>(answer, HttpStatus.NO_CONTENT);
     }
 
-    public User getUserById(Integer id){
+    public ResponseEntity<User> getUserById(Long id){
         if(repository.existsById(id)) {
             UserEntity userEntity=  repository.findById(id).get();
-            return new User(userEntity.getId(),userEntity.getName(),userEntity.getAge(),userEntity.getEmail());
+            User user = new User(userEntity.getId(),userEntity.getName(),userEntity.getAge(),userEntity.getEmail());
+            return new ResponseEntity<>(user, HttpStatus.NO_CONTENT);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
     }
 
-    public ResponseEntity<Void> deleteUser(Integer id){
+    public ResponseEntity<Void> deleteUser(Long id){
         if(repository.existsById(id)) {
             repository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -55,7 +56,7 @@ public class UserService {
         }
     }
 
-    public ResponseEntity<Void> updateUser(Integer id, User user){
+    public ResponseEntity<Void> updateUser(Long id, User user){
        if(repository.existsById(id)){
            UserEntity userEntity= repository.findById(id).get();
            userEntity.setName(user.getName());
