@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b52e90d1-7f18-4c8a-a883-f6053d4cf752" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenApiGenerator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/OpenApiGenerator/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenApiGenerator/src/main/resources/customer.yml" beforeDir="false" afterPath="$PROJECT_DIR$/OpenApiGenerator/src/main/resources/addressbook.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

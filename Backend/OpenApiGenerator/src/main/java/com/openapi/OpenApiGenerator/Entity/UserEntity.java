@@ -18,18 +18,17 @@ public class UserEntity {
 
     private Integer age;
 
-    private LocalDate birthDate;
+
 
     public UserEntity(){
 
     }
 
-    public UserEntity(Integer id, String name, String email, Integer age, LocalDate birthDate) {
+    public UserEntity(Integer id, String name, String email, Integer age) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.age = age;
-        this.birthDate = birthDate;
     }
 
     public Integer getId() {
@@ -64,13 +63,6 @@ public class UserEntity {
         this.age = age;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
 
     @Override
     public String toString() {
@@ -79,7 +71,6 @@ public class UserEntity {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
-                ", birthDate=" + birthDate +
                 '}';
     }
 }

@@ -10,7 +10,10 @@ import java.util.List;
 
 @RestController
 public class UserController implements UserApi {
-
+    @Override
+    public ResponseEntity<User> getUser(Long id) {
+        return UserApi.super.getUser(id);
+    }
 
     UserService userService;
     UserController(UserService userService){
