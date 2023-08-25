@@ -24,6 +24,8 @@
 <script>
 // @ is an alias to /src
 import axios from 'axios';
+import {store} from '../store'
+
 
 export default {
   name: 'AddUser',
@@ -53,6 +55,10 @@ data(){
         })
         .catch(error => {
           console.error('Error submitting user data:', error);
+          store.id = store.id+ 1;
+          store.user.push({id:store.id,name:this.name , age: this.age, email: this.email})
+          this.$router.push('/');
+
         });
     }
 }

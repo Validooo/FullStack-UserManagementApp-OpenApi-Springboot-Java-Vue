@@ -11,14 +11,15 @@
         </tr>
       </thead>
       <tbody>
+      
         <tr v-for="user in userList" :key="user.id">
           <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.age }}</td>
           <td>{{ user.email }}</td>
           <td>
-            <button @click="editUser(user)" class="update-button">Update</button>
-            <button @click="delete(user.id)" class="delete-button" >Delete</button>
+            <button @click="editUser(user.id)" class="update-button">Update</button>
+            <button @click="deleteUser(user.id)" class="delete-button" >Delete</button>
           </td>
         </tr>
         
@@ -32,26 +33,37 @@
 // @ is an alias to /src
 
 import axios from 'axios';
+import {store} from '../store'
 
 export default {
 
   name: 'UserList',
   data() {
     return {
-      userList: []
+      userList: [],
     };
   },
   created() {
     this.fetchData();
   },methods: {
     fetchData() {
+    
       axios.get('http://localhost:8080/user')
         .then(response => {
           this.userList = response.data;
         })
         .catch(error => {
-          console.error('Error fetching data:', error);
+          console.log(error)
+          
+          this.userList = store.user;
         });
+    },
+    editUser(id){
+    },
+    deleteUser(id){
+      const userListFiltered = store.user.filter(person => person.id !== id);
+      store.user = userListFiltered
+      this.fetchData();
     }
   }
 

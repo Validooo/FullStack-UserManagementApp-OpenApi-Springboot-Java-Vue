@@ -1,4 +1,5 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-  transpileDependencies: true
+  publicPath: '/FullStack-UserManagementApp-OpenApi-Springboot-Java-Vue/',
+  transpileDependencies: true,
 })
