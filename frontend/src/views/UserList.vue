@@ -128,7 +128,8 @@ export default {
         this.updatedUserId = -1;
         this.showUpdateMessage = false
         store.updatedUserId = -1;
-        this.showCreateMessage = false
+        this.showCreateMessage = false,
+        store.newUserCreated = false;
       }, 5000); // Delay of 3000 milliseconds (3 seconds)
     },
     checkIfUserUpdated() {
@@ -225,7 +226,7 @@ this.removeMessage();
 
 .alert-div-message {
   height: 50px;
-  background-color: #ff8282;
+  background-color: #ff3434;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -233,7 +234,7 @@ this.removeMessage();
 }
 .update-div-message {
   height: 50px;
-  background-color: #fff1ba;
+  background-color: #ffd630;
   position: relative;
   justify-content: center;
   align-items: center;
