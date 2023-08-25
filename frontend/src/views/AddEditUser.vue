@@ -119,6 +119,7 @@ export default {
             this.age = null;
             this.email = "";
             store.updatedUserId = this.userId;
+            store.newUserCreated= false;
             this.$router.push("/");
           })
           .catch((error) => {
@@ -133,6 +134,7 @@ export default {
         };
         store.user[this.userId - 1] = userDataa;
         store.updatedUserId = this.userId;
+        store.newUserCreated= false;
         this.$router.push("/");
       }
     },
@@ -164,6 +166,7 @@ export default {
           this.age = null;
           this.email = "";
           store.newUserCreated= true;
+          store.updatedUserId = -1;
           this.$router.push("/");
         })
         .catch((error) => {
@@ -179,6 +182,7 @@ export default {
         email: this.email,
       });
       store.newUserCreated= true;
+      store.updatedUserId = -1;
       this.$router.push("/");
     },
   },

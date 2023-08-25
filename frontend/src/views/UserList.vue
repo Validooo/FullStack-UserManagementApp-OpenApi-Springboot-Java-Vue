@@ -141,7 +141,7 @@ export default {
     }, checkIfUserCreate(){
       console.log(store.newUserCreated)
 if(store.newUserCreated === true){
-this.message = `Create User "${this.getLastUserCreated().name}" with id="${this.getLastUserCreated().id}"`
+this.message = `Create new User "${this.getLastUserCreated().name}" with id="${this.getLastUserCreated().id}"`
 this.showCreateMessage = true;
 this.removeMessage();
 }
