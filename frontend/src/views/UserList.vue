@@ -1,5 +1,8 @@
 <template>
   <div>
+
+
+    <div class="alert" v-if="showErrorMessage"><b class="centered-element">{{message}}</b></div>  
     <table class="user-table">
       <thead>
         <tr>
@@ -42,6 +45,8 @@ export default {
     return {
       userList: [],
       isConnected: false,
+      message: '',
+      showErrorMessage: false
     };
   },
   created() {
@@ -71,16 +76,21 @@ export default {
           .delete(`http://localhost:5000/user/${this.userId}`)
           .then((response) => {
             this.todos = this.todos.filter((todo) => todo.id !== id);
+            this.message = "Delete User  "
           })
           .catch((error) => {
             console.log(error);
           });
       } else {
+        const founduser = store.user.find( (user) => user.id === id );
         const userListFiltered = store.user.filter(
           (person) => person.id !== id
         );
         store.user = userListFiltered;
+        this.message = `Delete User "${founduser.name}" with id="${id}"`
         this.fetchData();
+        this.showErrorMessage = true;
+        this.removeErrorMessage();
       }
     },
     checkAndFetch() {
@@ -94,7 +104,12 @@ export default {
           this.isConnected = false;
           return this.fetchData();
         });
-    },
+    }, removeErrorMessage() {
+      setTimeout(() => {
+        this.showErrorMessage = false;
+        this.message = "";
+      }, 5000); // Delay of 3000 milliseconds (3 seconds)
+    }
   },
 };
 </script>
@@ -161,5 +176,20 @@ export default {
 
 .delete-button:active {
   background-color: #fc0909;
+}
+
+.alert{
+  height: 50px;
+  background-color: #fff1ba;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  /* Additional styling */
+}
+.centered-element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
