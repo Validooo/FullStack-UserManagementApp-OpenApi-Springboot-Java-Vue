@@ -41,31 +41,54 @@ export default {
   data() {
     return {
       userList: [],
+      isConnected: false
     };
   },
   created() {
-    this.fetchData();
+    this.checkAndFetch();
   },methods: {
-    fetchData() {
-    
-      axios.get('http://localhost:8080/user')
+  async fetchData() {
+    if(this.isConnected){
+      axios.get('http://localhost:5000/user')
         .then(response => {
           this.userList = response.data;
         })
         .catch(error => {
-          console.log(error)
-          
-          this.userList = store.user;
+          console.log(error) 
         });
-    },
+    }else{
+      this.userList = store.user;
+    } },
     editUser(id){
       this.$router.push(`/user/${id}`);
     },
     deleteUser(id){
-      const userListFiltered = store.user.filter(person => person.id !== id);
-      store.user = userListFiltered
-      this.fetchData();
-    }
+      if(this.isConnected){
+        axios.delete(`http://localhost:5000/user/${this.userId}`)
+        .then(response => {
+          this.todos = this.todos.filter(todo => todo.id !== id);
+        })
+        .catch(error => {
+          console.log(error) 
+        });
+      }else{
+        const userListFiltered = store.user.filter(person => person.id !== id);
+          store.user = userListFiltered
+          this.fetchData();
+      }
+      
+    },checkAndFetch(){
+      axios.get('http://localhost:5000/check-connection')
+        .then(response => {
+          this.isConnected = true;
+          return this.fetchData();
+        })
+        .catch(error => {
+          this.isConnected = false;
+          return this.fetchData();
+        });
+        
+      }
   }
 
 }
