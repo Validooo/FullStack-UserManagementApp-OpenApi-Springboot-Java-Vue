@@ -9,6 +9,7 @@
     <div class="create-div-message" v-if="showCreateMessage">
       <b class="centered-element">{{ message }}</b>
     </div>
+  
     <table class="user-table">
       <thead>
         <tr>

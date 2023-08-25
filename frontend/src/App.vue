@@ -1,11 +1,15 @@
 <template>
- <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/user/-1">Add User</router-link>
-  </nav>
+  <Header/>
+
   <router-view />
 
 </template>
+<script>
+import Header from '@/views/Header'
+export default {
+  components: { Header },
+}
+</script>
 
 <style>
 #app {
