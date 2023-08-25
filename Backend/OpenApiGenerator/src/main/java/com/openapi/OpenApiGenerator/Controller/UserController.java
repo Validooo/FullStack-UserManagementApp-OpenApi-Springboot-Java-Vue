@@ -3,16 +3,25 @@ package com.openapi.OpenApiGenerator.Controller;
 import com.openapi.OpenApiGenerator.Service.UserService;
 import com.openapi.OpenApiGeneratorr.api.AddressbookApi;
 
+import com.openapi.OpenApiGeneratorr.model.CheckConnection200Response;
 import com.openapi.OpenApiGeneratorr.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.NativeWebRequest;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController implements AddressbookApi {
 
+    @Override
+    public ResponseEntity<CheckConnection200Response> checkConnection() {
+        CheckConnection200Response checkconnectionresponse = new CheckConnection200Response();
+        checkconnectionresponse.setMessage("Connected to the Server");
+        return new ResponseEntity<>(checkconnectionresponse, HttpStatus.OK);
+    }
 
     UserService userService;
     UserController(UserService userService){

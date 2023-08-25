@@ -6,6 +6,31 @@ info:
 servers:
   - url: 'http://localhost:8080/api'
 paths:
+  /check-connection:
+    get:
+      operationId: checkConnection
+      summary: check if server is live
+      tags:
+        - Addressbook
+      responses:
+        200:
+          description: Successful response
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        500:
+          description: Failure
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
   /user:
     get:
       operationId: getUsers
@@ -29,7 +54,7 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          'application/json':
             schema:
               $ref: "#/components/schemas/User"
       responses:
