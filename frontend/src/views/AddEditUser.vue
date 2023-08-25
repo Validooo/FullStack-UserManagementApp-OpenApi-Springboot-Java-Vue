@@ -17,7 +17,8 @@
       <input v-model.number="email" id="email" type="text" class="form-input" placeholder="Enter your email" />
     </div>
 
-    <button @click="submitForm" class="custom-button">Submit</button>
+    <button @click="submitForm" class="custom-button" v-if="!editmode">Submit</button>
+    <button @click="updateUser" class="custom-button" v-if="editmode">Update</button>
   </div>
 </template>
 
@@ -33,9 +34,13 @@ data(){
   return{
     name: '',
       age: null,
-      email: ''
+      email: '',
+      userId: null,
+      editmode: false
   }
-  
+},created(){
+  this.userId = this.$route.params.id;
+this.checkEditOrAddUser()
 }, methods:{
   submitForm() {
       const userData = {
@@ -60,9 +65,41 @@ data(){
           this.$router.push('/');
 
         });
-    }
+    },
+    checkEditOrAddUser(){
+     
+if(this.userId.toString() !== "-1"){
+    const founduser = store.user.find(user => user.id.toString() === this.userId);
+    this.name = founduser.name;
+    this.age = founduser.age;
+    this.email = founduser.email;
+    this.editmode = true;
+  }
+},
+updateUser(){
+  const userData = {
+    id: this.userId,
+    name: this.name,
+    age: this.age,
+    email: this.email
+  };
+
+  axios.put(`http://localhost:8080/user/${this.userId}`, userData)
+  .then(response => {
+      console.log('User data updated successfully:', response.data);
+      // Reset form fields after successful submission
+      this.name = '';
+      this.age = null;
+      this.email = '';
+      this.$router.push('/');
+    })
+  .catch(error => {
+    store.user[this.userId-1] = userData;
+      this.$router.push('/');
+
+    });
 }
-}
+}}
 </script>
 
 <style scoped>

@@ -59,6 +59,7 @@ export default {
         });
     },
     editUser(id){
+      this.$router.push(`/user/${id}`);
     },
     deleteUser(id){
       const userListFiltered = store.user.filter(person => person.id !== id);
