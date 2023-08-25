@@ -67,55 +67,39 @@ export default {
   },
   methods: {
     submitForm() {
-      const userData = {
-        name: this.name,
-        age: this.age,
-        email: this.email,
-      };
-
+      if (this.isConnected) {
+        this.createUserInDatabase();
+      } else {
+        this.createUserInStore();
+      }
+    },
+    getUserDetailsFromDatabase() {
       axios
-        .post("http://localhost:5000/user", userData)
+        .get(`http://localhost:5000/user/${this.userId}`)
         .then((response) => {
-          console.log("User data submitted successfully:", response.data);
-          // Reset form fields after successful submission
-          this.name = "";
-          this.age = null;
-          this.email = "";
-          this.$router.push("/");
-        })
-        .catch((error) => {
-          console.error("Error submitting user data:", error);
-          store.id = store.id + 1;
-          store.user.push({
-            id: store.id,
-            name: this.name,
-            age: this.age,
-            email: this.email,
-          });
-          this.$router.push("/");
+          this.user = response.data;
+          this.name = this.user.name;
+          this.age = this.user.age;
+          this.email = this.user.email;
         });
+    },
+    getUserDetailseFromStore() {
+      const founduser = store.user.find(
+        (user) => user.id.toString() === this.userId
+      );
+      this.name = founduser.name;
+      this.age = founduser.age;
+      this.email = founduser.email;
+      this.editmode = true;
     },
     checkEditOrAddUser() {
       if (this.isConnected) {
         if (this.userId.toString() !== "-1") {
-          axios
-            .get(`http://localhost:5000/user/${this.userId}`)
-            .then((response) => {
-              this.user = response.data;
-              this.name = this.user.name;
-              this.age = this.user.age;
-              this.email = this.user.email;
-            });
+          this.getUserDetailsFromDatabase();
         }
       } else {
         if (this.userId.toString() !== "-1") {
-          const founduser = store.user.find(
-            (user) => user.id.toString() === this.userId
-          );
-          this.name = founduser.name;
-          this.age = founduser.age;
-          this.email = founduser.email;
-          this.editmode = true;
+          this.getUserDetailseFromStore();
         }
       }
     },
@@ -134,7 +118,7 @@ export default {
             this.name = "";
             this.age = null;
             this.email = "";
-            store.updatedUserId = this.userId
+            store.updatedUserId = this.userId;
             this.$router.push("/");
           })
           .catch((error) => {
@@ -148,7 +132,7 @@ export default {
           email: this.email,
         };
         store.user[this.userId - 1] = userDataa;
-        store.updatedUserId =this.userId
+        store.updatedUserId = this.userId;
         this.$router.push("/");
       }
     },
@@ -163,6 +147,39 @@ export default {
           this.isConnected = false;
           this.checkEditOrAddUser();
         });
+    },
+    createUserInDatabase() {
+      const userData = {
+        name: this.name,
+        age: this.age,
+        email: this.email,
+      };
+
+      axios
+        .post("http://localhost:5000/user", userData)
+        .then((response) => {
+          console.log("User data submitted successfully:", response.data);
+          // Reset form fields after successful submission
+          this.name = "";
+          this.age = null;
+          this.email = "";
+          store.newUserCreated= true;
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.error("Error submitting user data:", error);
+        });
+    },
+    createUserInStore() {
+      store.id = store.id + 1;
+      store.user.push({
+        id: store.id,
+        name: this.name,
+        age: this.age,
+        email: this.email,
+      });
+      store.newUserCreated= true;
+      this.$router.push("/");
     },
   },
 };

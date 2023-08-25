@@ -1,9 +1,12 @@
 <template>
   <div>
-    <div class="alert" v-if="showErrorMessage">
+    <div class="alert-div-message" v-if="showErrorMessage">
       <b class="centered-element">{{ message }}</b>
     </div>
-    <div class="update" v-if="showUpdateMessage">
+    <div class="update-div-message" v-if="showUpdateMessage">
+      <b class="centered-element">{{ message }}</b>
+    </div>
+    <div class="create-div-message" v-if="showCreateMessage">
       <b class="centered-element">{{ message }}</b>
     </div>
     <table class="user-table">
@@ -51,6 +54,7 @@ export default {
       message: "",
       showErrorMessage: false,
       showUpdateMessage: false,
+      showCreateMessage: false,
       updatedUserId: -1,
     };
   },
@@ -65,6 +69,7 @@ export default {
           .then((response) => {
             this.userList = response.data;
             this.checkIfUserUpdated()
+            this.checkIfUserCreate()
           })
           .catch((error) => {
             console.log(error);
@@ -72,6 +77,7 @@ export default {
       } else {
         this.userList = store.user;
         this.checkIfUserUpdated()
+        this.checkIfUserCreate()
       }
     },
     editUser(id) {
@@ -122,6 +128,7 @@ export default {
         this.updatedUserId = -1;
         this.showUpdateMessage = false
         store.updatedUserId = -1;
+        this.showCreateMessage = false
       }, 5000); // Delay of 3000 milliseconds (3 seconds)
     },
     checkIfUserUpdated() {
@@ -131,14 +138,23 @@ export default {
         this.showUpdateMessage = true
         this.removeMessage();
       }
-    },
+    }, checkIfUserCreate(){
+      console.log(store.newUserCreated)
+if(store.newUserCreated === true){
+this.message = `Create User "${this.getLastUserCreated().name}" with id="${this.getLastUserCreated().id}"`
+this.showCreateMessage = true;
+this.removeMessage();
+}
+    }, 
     getUserById(id) {
       if (this.isConnected) {
         return this.todos.find((user) => user.id === id);
       } else {
         return store.user.find((user) => user.id === id);
       }
-    },
+    }, getLastUserCreated(){
+      return this.userList[this.userList.length-1];
+    }
   },
 };
 </script>
@@ -207,7 +223,7 @@ export default {
   background-color: #fc0909;
 }
 
-.alert {
+.alert-div-message {
   height: 50px;
   background-color: #ff8282;
   position: relative;
@@ -215,7 +231,7 @@ export default {
   align-items: center;
   /* Additional styling */
 }
-.update {
+.update-div-message {
   height: 50px;
   background-color: #fff1ba;
   position: relative;
@@ -229,5 +245,14 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.create-div-message{
+  height: 50px;
+  background-color: #3dff6a;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  /* Additional styling */
 }
 </style>
