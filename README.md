@@ -16,5 +16,11 @@ The project will allow users to create contacts and manage them. It will use the
 <b>2- Add new User</b>
 <img src="pictures/add-new-user.png" >
 
-<b>3-Update User</b>
+<b>3-Update User Details</b>
 <img src="pictures/update-user-by-id.png" >
+
+<b>4-User Updated</b>
+<img src="pictures/user-updated.png" >
+
+<b>5-User Deleted</b>
+<img src="pictures/delete-user.png" >
