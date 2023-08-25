@@ -41,9 +41,8 @@ public class UserService {
     public ResponseEntity<User> getUserById(Long id){
         if(repository.existsById(id)) {
             UserEntity userEntity=  repository.findById(id).get();
-            User user = new User();
-        //    User user = new User(userEntity.getId(),userEntity.getName(),userEntity.getAge(),userEntity.getEmail());
-            return new ResponseEntity<>(user, HttpStatus.NO_CONTENT);
+            User userBack = new User(userEntity.getId(),userEntity.getName(),userEntity.getAge(),userEntity.getEmail());
+            return new ResponseEntity<>(userBack, HttpStatus.OK);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
