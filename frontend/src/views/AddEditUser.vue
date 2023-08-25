@@ -134,6 +134,7 @@ export default {
             this.name = "";
             this.age = null;
             this.email = "";
+            store.updatedUserId = this.userId
             this.$router.push("/");
           })
           .catch((error) => {
@@ -147,6 +148,7 @@ export default {
           email: this.email,
         };
         store.user[this.userId - 1] = userDataa;
+        store.updatedUserId =this.userId
         this.$router.push("/");
       }
     },

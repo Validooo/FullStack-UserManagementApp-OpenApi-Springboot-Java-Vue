@@ -1,8 +1,11 @@
 <template>
   <div>
-
-
-    <div class="alert" v-if="showErrorMessage"><b class="centered-element">{{message}}</b></div>  
+    <div class="alert" v-if="showErrorMessage">
+      <b class="centered-element">{{ message }}</b>
+    </div>
+    <div class="update" v-if="showUpdateMessage">
+      <b class="centered-element">{{ message }}</b>
+    </div>
     <table class="user-table">
       <thead>
         <tr>
@@ -45,8 +48,10 @@ export default {
     return {
       userList: [],
       isConnected: false,
-      message: '',
-      showErrorMessage: false
+      message: "",
+      showErrorMessage: false,
+      showUpdateMessage: false,
+      updatedUserId: -1,
     };
   },
   created() {
@@ -59,12 +64,14 @@ export default {
           .get("http://localhost:5000/user")
           .then((response) => {
             this.userList = response.data;
+            this.checkIfUserUpdated()
           })
           .catch((error) => {
             console.log(error);
           });
       } else {
         this.userList = store.user;
+        this.checkIfUserUpdated()
       }
     },
     editUser(id) {
@@ -75,22 +82,25 @@ export default {
         axios
           .delete(`http://localhost:5000/user/${this.userId}`)
           .then((response) => {
+            const founduser = this.getUserById(id);
             this.todos = this.todos.filter((todo) => todo.id !== id);
-            this.message = "Delete User  "
+            this.message = `Delete User "${founduser.name}" with id="${id}"`;
+            this.showErrorMessage = true;
+            this.removeMessage();
           })
           .catch((error) => {
             console.log(error);
           });
       } else {
-        const founduser = store.user.find( (user) => user.id === id );
+        const founduser = this.getUserById(id);
         const userListFiltered = store.user.filter(
           (person) => person.id !== id
         );
         store.user = userListFiltered;
-        this.message = `Delete User "${founduser.name}" with id="${id}"`
+        this.message = `Delete User "${founduser.name}" with id="${id}"`;
         this.fetchData();
         this.showErrorMessage = true;
-        this.removeErrorMessage();
+        this.removeMessage();
       }
     },
     checkAndFetch() {
@@ -104,12 +114,31 @@ export default {
           this.isConnected = false;
           return this.fetchData();
         });
-    }, removeErrorMessage() {
+    },
+    removeMessage() {
       setTimeout(() => {
         this.showErrorMessage = false;
         this.message = "";
+        this.updatedUserId = -1;
+        this.showUpdateMessage = false
+        store.updatedUserId = -1;
       }, 5000); // Delay of 3000 milliseconds (3 seconds)
-    }
+    },
+    checkIfUserUpdated() {
+      if (store.updatedUserId !== -1) {
+        const user = this.getUserById(store.updatedUserId)
+        this.message = `Update User "${user.name}" with id="${store.updatedUserId}"`;
+        this.showUpdateMessage = true
+        this.removeMessage();
+      }
+    },
+    getUserById(id) {
+      if (this.isConnected) {
+        return this.todos.find((user) => user.id === id);
+      } else {
+        return store.user.find((user) => user.id === id);
+      }
+    },
   },
 };
 </script>
@@ -178,7 +207,15 @@ export default {
   background-color: #fc0909;
 }
 
-.alert{
+.alert {
+  height: 50px;
+  background-color: #ff8282;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  /* Additional styling */
+}
+.update {
   height: 50px;
   background-color: #fff1ba;
   position: relative;
@@ -186,6 +223,7 @@ export default {
   align-items: center;
   /* Additional styling */
 }
+
 .centered-element {
   position: absolute;
   top: 50%;
