@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b52e90d1-7f18-4c8a-a883-f6053d4cf752" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/OpenApiGenerator/src/main/java/com/openapi/OpenApiGenerator/Service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/dist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/dist/js/chunk-vendors.0a455f02.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/dist/js/chunk-vendors.0a455f02.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/views/AddEditUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/AddEditUser.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/views/UserList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/UserList.vue" afterDir="false" />
     </list>

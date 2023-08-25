@@ -3,137 +3,167 @@
     <h2 class="form-title">User Information</h2>
     <div class="form-group">
       <label for="name" class="form-label">Name:</label>
-      <input v-model="name" id="name" type="text" class="form-input" placeholder="Enter your name" />
+      <input
+        v-model="name"
+        id="name"
+        type="text"
+        class="form-input"
+        placeholder="Enter your name"
+      />
     </div>
 
     <div class="form-group">
       <label for="age" class="form-label">Age:</label>
-      <input v-model.number="age" id="age" type="number" class="form-input" placeholder="Enter your age" />
+      <input
+        v-model.number="age"
+        id="age"
+        type="number"
+        class="form-input"
+        placeholder="Enter your age"
+      />
     </div>
-
 
     <div class="form-group">
       <label for="email" class="form-label">Email:</label>
-      <input v-model.number="email" id="email" type="text" class="form-input" placeholder="Enter your email" />
+      <input
+        v-model.number="email"
+        id="email"
+        type="text"
+        class="form-input"
+        placeholder="Enter your email"
+      />
     </div>
 
-    <button @click="submitForm" class="custom-button" v-if="!editmode">Submit</button>
-    <button @click="updateUser" class="custom-button" v-if="editmode">Update</button>
+    <button @click="submitForm" class="custom-button" v-if="!editmode">
+      Submit
+    </button>
+    <button @click="updateUser" class="custom-button" v-if="editmode">
+      Update
+    </button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import axios from 'axios';
-import {store} from '../store'
-
+import axios from "axios";
+import { store } from "../store";
 
 export default {
-  name: 'AddUser',
-data(){
-  return{
-    name: '',
+  name: "AddUser",
+  data() {
+    return {
+      name: "",
       age: null,
-      email: '',
+      email: "",
       userId: null,
       editmode: false,
-      isConnected : false,
-      user: null
-  }
-},created(){
-  this.userId = this.$route.params.id;
- this.checkConnection();
-
-}, methods:{
-  submitForm() {
+      isConnected: false,
+      user: null,
+    };
+  },
+  created() {
+    this.userId = this.$route.params.id;
+    this.checkConnection();
+  },
+  methods: {
+    submitForm() {
       const userData = {
         name: this.name,
         age: this.age,
-        email: this.email
+        email: this.email,
       };
 
-      axios.post('http://localhost:5000/user', userData)
-        .then(response => {
-          console.log('User data submitted successfully:', response.data);
+      axios
+        .post("http://localhost:5000/user", userData)
+        .then((response) => {
+          console.log("User data submitted successfully:", response.data);
           // Reset form fields after successful submission
-          this.name = '';
+          this.name = "";
           this.age = null;
-          this.email = '';
-          this.$router.push('/');
+          this.email = "";
+          this.$router.push("/");
         })
-        .catch(error => {
-          console.error('Error submitting user data:', error);
-          store.id = store.id+ 1;
-          store.user.push({id:store.id,name:this.name , age: this.age, email: this.email})
-          this.$router.push('/');
-
+        .catch((error) => {
+          console.error("Error submitting user data:", error);
+          store.id = store.id + 1;
+          store.user.push({
+            id: store.id,
+            name: this.name,
+            age: this.age,
+            email: this.email,
+          });
+          this.$router.push("/");
         });
     },
-    checkEditOrAddUser(){
-     if (this.isConnected){
-      
-      if(this.userId.toString() !== "-1") {
-        axios.get(`http://localhost:5000/user/${this.userId}`)
-        .then(response => {
-        this.user = response.data
-        this.name = this.user.name;
-        this.age = this.user.age;
-        this.email = this.user.email;
-      }) 
-     }
-    }else{
+    checkEditOrAddUser() {
+      if (this.isConnected) {
+        if (this.userId.toString() !== "-1") {
+          axios
+            .get(`http://localhost:5000/user/${this.userId}`)
+            .then((response) => {
+              this.user = response.data;
+              this.name = this.user.name;
+              this.age = this.user.age;
+              this.email = this.user.email;
+            });
+        }
+      } else {
+        if (this.userId.toString() !== "-1") {
+          const founduser = store.user.find(
+            (user) => user.id.toString() === this.userId
+          );
+          this.name = founduser.name;
+          this.age = founduser.age;
+          this.email = founduser.email;
+          this.editmode = true;
+        }
+      }
+    },
+    updateUser() {
+      const userData = {
+        name: this.name,
+        age: this.age,
+        email: this.email,
+      };
 
-    if(this.userId.toString() !== "-1"){
-    const founduser = store.user.find(user => user.id.toString() === this.userId);
-    this.name = founduser.name;
-    this.age = founduser.age;
-    this.email = founduser.email;
-    this.editmode = true;
-  }
-     }
-
-},
-updateUser(){
-  const userData = {
-    name: this.name,
-    age: this.age,
-    email: this.email
-  };
-
-  axios.put(`http://localhost:5000/user/${this.userId}`, userData)
-  .then(response => {
-      console.log('User data updated successfully:', response.data);
-      // Reset form fields after successful submission
-      this.name = '';
-      this.age = null;
-      this.email = '';
-      this.$router.push('/');
-    })
-  .catch(error => {
-    const userDataa = {
-    id: this.userId,
-    name: this.name,
-    age: this.age,
-    email: this.email
-  }
-
-    store.user[this.userId-1] = userDataa;
-      this.$router.push('/');
-
-    });
-},checkConnection(){
-      axios.get('http://localhost:5000/check-connection')
-        .then(response => {
+      if (this.isConnected) {
+        axios
+          .put(`http://localhost:5000/user/${this.userId}`, userData)
+          .then((response) => {
+            console.log("User data updated successfully:", response.data);
+            this.name = "";
+            this.age = null;
+            this.email = "";
+            this.$router.push("/");
+          })
+          .catch((error) => {
+            console.error("Error updating user data:", error);
+          });
+      } else {
+        const userDataa = {
+          id: this.userId,
+          name: this.name,
+          age: this.age,
+          email: this.email,
+        };
+        store.user[this.userId - 1] = userDataa;
+        this.$router.push("/");
+      }
+    },
+    checkConnection() {
+      axios
+        .get("http://localhost:5000/check-connection")
+        .then((response) => {
           this.isConnected = true;
           this.checkEditOrAddUser();
         })
-        .catch(error => {
+        .catch((error) => {
           this.isConnected = false;
           this.checkEditOrAddUser();
         });
-        
-      }
-}}
+    },
+  },
+};
 </script>
 
 <style scoped>

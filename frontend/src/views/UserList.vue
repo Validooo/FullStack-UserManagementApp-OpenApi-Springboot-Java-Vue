@@ -11,19 +11,20 @@
         </tr>
       </thead>
       <tbody>
-      
         <tr v-for="user in userList" :key="user.id">
           <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.age }}</td>
           <td>{{ user.email }}</td>
           <td>
-            <button @click="editUser(user.id)" class="update-button">Update</button>
-            <button @click="deleteUser(user.id)" class="delete-button" >Delete</button>
+            <button @click="editUser(user.id)" class="update-button">
+              Update
+            </button>
+            <button @click="deleteUser(user.id)" class="delete-button">
+              Delete
+            </button>
           </td>
         </tr>
-        
-
       </tbody>
     </table>
   </div>
@@ -32,69 +33,73 @@
 <script>
 // @ is an alias to /src
 
-import axios from 'axios';
-import {store} from '../store'
+import axios from "axios";
+import { store } from "../store";
 
 export default {
-
-  name: 'UserList',
+  name: "UserList",
   data() {
     return {
       userList: [],
-      isConnected: false
+      isConnected: false,
     };
   },
   created() {
     this.checkAndFetch();
-  },methods: {
-  async fetchData() {
-    if(this.isConnected){
-      axios.get('http://localhost:5000/user')
-        .then(response => {
-          this.userList = response.data;
-        })
-        .catch(error => {
-          console.log(error) 
-        });
-    }else{
-      this.userList = store.user;
-    } },
-    editUser(id){
+  },
+  methods: {
+    async fetchData() {
+      if (this.isConnected) {
+        axios
+          .get("http://localhost:5000/user")
+          .then((response) => {
+            this.userList = response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        this.userList = store.user;
+      }
+    },
+    editUser(id) {
       this.$router.push(`/user/${id}`);
     },
-    deleteUser(id){
-      if(this.isConnected){
-        axios.delete(`http://localhost:5000/user/${this.userId}`)
-        .then(response => {
-          this.todos = this.todos.filter(todo => todo.id !== id);
-        })
-        .catch(error => {
-          console.log(error) 
-        });
-      }else{
-        const userListFiltered = store.user.filter(person => person.id !== id);
-          store.user = userListFiltered
-          this.fetchData();
+    deleteUser(id) {
+      if (this.isConnected) {
+        axios
+          .delete(`http://localhost:5000/user/${this.userId}`)
+          .then((response) => {
+            this.todos = this.todos.filter((todo) => todo.id !== id);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        const userListFiltered = store.user.filter(
+          (person) => person.id !== id
+        );
+        store.user = userListFiltered;
+        this.fetchData();
       }
-      
-    },checkAndFetch(){
-      axios.get('http://localhost:5000/check-connection')
-        .then(response => {
+    },
+    checkAndFetch() {
+      axios
+        .get("http://localhost:5000/check-connection")
+        .then((response) => {
           this.isConnected = true;
           return this.fetchData();
         })
-        .catch(error => {
+        .catch((error) => {
           this.isConnected = false;
           return this.fetchData();
         });
-        
-      }
-  }
-
-}
+    },
+  },
+};
 </script>
 
-<style >
+<style>
 .user-table {
   width: 100%;
   border-collapse: collapse;
@@ -118,7 +123,6 @@ export default {
   background-color: #f0f0f0;
 }
 
-
 .update-button {
   display: inline-block;
   padding: 12px 20px;
@@ -136,9 +140,6 @@ export default {
 .update-button:hover {
   background-color: #1d84d3;
 }
-
-
-
 
 .delete-button {
   display: inline-block;
@@ -161,5 +162,4 @@ export default {
 .delete-button:active {
   background-color: #fc0909;
 }
-
 </style>
