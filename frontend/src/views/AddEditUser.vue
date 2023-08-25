@@ -36,11 +36,14 @@ data(){
       age: null,
       email: '',
       userId: null,
-      editmode: false
+      editmode: false,
+      isConnected : false,
+      user: null
   }
 },created(){
   this.userId = this.$route.params.id;
-this.checkEditOrAddUser()
+ this.checkConnection();
+
 }, methods:{
   submitForm() {
       const userData = {
@@ -49,7 +52,7 @@ this.checkEditOrAddUser()
         email: this.email
       };
 
-      axios.post('http://localhost:8080/user', userData)
+      axios.post('http://localhost:5000/user', userData)
         .then(response => {
           console.log('User data submitted successfully:', response.data);
           // Reset form fields after successful submission
@@ -67,24 +70,37 @@ this.checkEditOrAddUser()
         });
     },
     checkEditOrAddUser(){
-     
-if(this.userId.toString() !== "-1"){
+     if (this.isConnected){
+      
+      if(this.userId.toString() !== "-1") {
+        axios.get(`http://localhost:5000/user/${this.userId}`)
+        .then(response => {
+        this.user = response.data
+        this.name = this.user.name;
+        this.age = this.user.age;
+        this.email = this.user.email;
+      }) 
+     }
+    }else{
+
+    if(this.userId.toString() !== "-1"){
     const founduser = store.user.find(user => user.id.toString() === this.userId);
     this.name = founduser.name;
     this.age = founduser.age;
     this.email = founduser.email;
     this.editmode = true;
   }
+     }
+
 },
 updateUser(){
   const userData = {
-    id: this.userId,
     name: this.name,
     age: this.age,
     email: this.email
   };
 
-  axios.put(`http://localhost:8080/user/${this.userId}`, userData)
+  axios.put(`http://localhost:5000/user/${this.userId}`, userData)
   .then(response => {
       console.log('User data updated successfully:', response.data);
       // Reset form fields after successful submission
@@ -94,11 +110,29 @@ updateUser(){
       this.$router.push('/');
     })
   .catch(error => {
-    store.user[this.userId-1] = userData;
+    const userDataa = {
+    id: this.userId,
+    name: this.name,
+    age: this.age,
+    email: this.email
+  }
+
+    store.user[this.userId-1] = userDataa;
       this.$router.push('/');
 
     });
-}
+},checkConnection(){
+      axios.get('http://localhost:5000/check-connection')
+        .then(response => {
+          this.isConnected = true;
+          this.checkEditOrAddUser();
+        })
+        .catch(error => {
+          this.isConnected = false;
+          this.checkEditOrAddUser();
+        });
+        
+      }
 }}
 </script>
 
