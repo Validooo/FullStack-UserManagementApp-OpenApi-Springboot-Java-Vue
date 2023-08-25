@@ -1,4 +1,4 @@
-<h2><a href= "https://validooo.github.io/FullStack-TodoManagement-App-React_Springboot-Java/"> Link to website</a><h2>
+<h2><a href= "https://validooo.github.io/FullStack-UserManagementApp-OpenApi-Springboot-Java-Vue/"> Link to website</a><h2>
 
 
 <h1>Work in Progress</h1>
