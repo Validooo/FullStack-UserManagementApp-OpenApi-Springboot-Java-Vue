@@ -131,7 +131,7 @@ export default {
         store.updatedUserId = -1;
         this.showCreateMessage = false,
         store.newUserCreated = false;
-      }, 5000); // Delay of 3000 milliseconds (3 seconds)
+      }, 55000); // Delay of 3000 milliseconds (3 seconds)
     },
     checkIfUserUpdated() {
       if (store.updatedUserId !== -1) {

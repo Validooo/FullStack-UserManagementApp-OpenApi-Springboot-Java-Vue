@@ -7,17 +7,14 @@
                     <div className="collapse navbar-collapse parent">
                         <ul className="navbar-nav">
                             <li className="nav-item fs-5"><router-link className="nav-link" to="/">Home</router-link></li>
-                            <li className="nav-item fs-5"><router-link className="nav-link" to="/user/-1">Add User</router-link></li>
+                            <li className="nav-item fs-5"><router-link className="nav-link" to="/user/-1">Add User
+                                </router-link></li>
                             <h2 className="child">Validooo</h2>
                         </ul>
                     </div>
-                    <ul className="navbar-nav">
-
-                    </ul>
                 </div>
             </div>
             </div>
-        
     </header>
 </template>
 
@@ -31,8 +28,6 @@ export default {
 .parent {
     position: relative;
     width: 100%; /* Set an appropriate width */
-
-   
   }
 
 .child {

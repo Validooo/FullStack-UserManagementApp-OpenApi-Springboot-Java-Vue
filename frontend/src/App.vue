@@ -1,8 +1,8 @@
 <template>
-  <Header/>
-
+  
+  <Header />
   <router-view />
-
+  
 </template>
 <script>
 import Header from '@/views/Header'
