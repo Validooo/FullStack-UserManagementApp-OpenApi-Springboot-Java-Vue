@@ -2,10 +2,10 @@
 
 
 
-#FullStack-UserManagementApp-OpenApi-Springboot-Java-Vue
 
 
-The project allows users to create contacts and manage them. It uses the OpenAPI generator to generate REST API classes in Java from a YAML file where the REST API endpoints are defined. The generated classes are then implemented with self-written classes (Controller, Service, Entity, Repository). The frontend is built with Vue and is a single-page application that comprises two routes (Userlist and AddEditUser).
+
+<p>The project allows users to create contacts and manage them. It uses the OpenAPI generator to generate REST API classes in Java from a YAML file where the REST API endpoints are defined. The generated classes are then implemented with self-written classes (Controller, Service, Entity, Repository). The frontend is built with Vue and is a single-page application that comprises two routes (Userlist and AddEditUser).</p>
 
 <h2> Steps to follow: </h2>
 
