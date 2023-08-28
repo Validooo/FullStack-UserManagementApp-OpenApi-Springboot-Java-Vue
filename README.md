@@ -7,6 +7,15 @@
 
 The project will allow users to create contacts and manage them. It will use the OpenAPI generator to generate REST API classes from a YAML file. These classes will be implemented with Java and managed with Spring Boot. The frontend is then built with Vue. Stay tuned!!
 
+<h2> Steps to follow: </h2>
+
+* Install Npm, Vue Cli, Java
+* To run the Vue app, use the command  `npm run serve`.
+* Import the Spring Boot backend project into Eclipse or IntelliJ as a Maven project.
+* Compile the project using Maven to generate the REST API classes.
+* Launch the Application
+
+
 <h2>Screenshots</h2>
 
 <b>1- User list</b>
