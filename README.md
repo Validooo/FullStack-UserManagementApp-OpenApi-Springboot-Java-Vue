@@ -1,11 +1,11 @@
 <h1><a href= "https://validooo.github.io/FullStack-UserManagementApp-OpenApi-Springboot-Java-Vue/"> Link to website</a><h1>
 
 
-<h1>Work in Progress</h1>
+
 #FullStack-UserManagementApp-OpenApi-Springboot-Java-Vue
 
 
-The project will allow users to create contacts and manage them. It will use the OpenAPI generator to generate REST API classes from a YAML file. These classes will be implemented with Java and managed with Spring Boot. The frontend is then built with Vue. Stay tuned!!
+The project allows users to create contacts and manage them. It uses the OpenAPI generator to generate REST API classes in Java from a YAML file where the REST API endpoints are defined. The generated classes are then implemented with self-written classes (Controller, Service, Entity, Repository). The frontend is built with Vue and is a single-page application that comprises two routes (Userlist and AddEditUser).
 
 <h2> Steps to follow: </h2>
 
