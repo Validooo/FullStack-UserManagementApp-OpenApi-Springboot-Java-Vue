@@ -16,6 +16,7 @@ The project will allow users to create contacts and manage them. It will use the
 * Launch the Application
 
 <h2> Notes: </h2>
+* Install Npm, Vue Cli, Java
 * The database is configured in the application.properties file.
 * The online version uses the store created by Vue's reactive to store the data.
 * The YAML file is located in the resources folder.
