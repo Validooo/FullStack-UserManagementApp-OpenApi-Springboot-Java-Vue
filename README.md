@@ -5,7 +5,7 @@
 
 
 
-<p>The project allows users to create contacts and manage them. It uses the OpenAPI generator to generate REST API classes in Java from a YAML file where the REST API endpoints are defined. The generated classes are then implemented with self-written classes (Controller, Service, Entity, Repository). The frontend is built with Vue and is a single-page application that comprises two routes (Userlist and AddEditUser).</p>
+<p>The project allows users to create contacts and manage them. It utilizes the OpenAPI Generator plugin to generate REST API classes in Java from a YAML file where the REST API endpoints are defined. The generated classes are subsequently implemented with self-written components (Controller, Service, Entity, Repository). We have employed Spring Boot to manage our dependencies, import the OpenAPI Generator plugin, and facilitate database generation. The frontend is constructed using Vue and is presented as a single-page application encompassing two routes (Userlist and AddEditUser).</p>
 
 <h2> Steps to follow: </h2>
 
@@ -17,9 +17,13 @@
 
 <h2> Notes: </h2>
 
+* The OpenAPI Generator plugin is defined in the pom.xml file.
 * The database is configured in the application.properties file.
 * The online version uses the store created by Vue's reactive to store the data.
 * The YAML file is located in the resources folder.
+
+  <h2>Reference: </h2>
+* This project used the following tutorial as a reference: https://medium.com/swlh/vue3-using-ref-or-reactive-88d47c8f6944.
 
 <h2>Screenshots</h2>
 
