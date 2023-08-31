@@ -19,7 +19,7 @@
     <div class="collapse navbar-collapse parent" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item" role="presentation">
-          <router-link class="nav-link" to="/">Home</router-link>
+          <router-link class="nav-link" to="/home">Home</router-link>
         </li>
 
         <li class="nav-item" role="presentation">
@@ -28,7 +28,9 @@
 
         <h2 class="child">Validooo</h2>
       </ul>
-      <button class="btn btn-outline-dark">Sign Out</button>
+      <button class="btn btn-outline-dark">
+        <router-link class="nav-link" to="/">Sign Out</router-link>
+        </button>
     </div>
   </nav>
 </template>
