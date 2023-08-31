@@ -37,7 +37,9 @@
         </tr>
       </tbody>
     </table>
+    <h2>test auto deploy</h2>
   </div>
+
   
 </template>
 
