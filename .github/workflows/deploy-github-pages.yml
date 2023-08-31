@@ -38,6 +38,7 @@ jobs:
           cd frontend
           ls -k
           ls
+          npm install @vue/cli-service --save-dev
           npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v3
