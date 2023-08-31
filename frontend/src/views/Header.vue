@@ -1,42 +1,55 @@
 <template>
-    <header className="border-bottom border-light border-5 mb-5 p-2">
-        <div className="container">
-            <div className="row">
-                <div className="navbar navbar-expand-lg">
-                    <a className="navbar-brand ms-2 fs-2 fw-bold text-black" href="https://validooo.github.io/FullStack-TodoManagement-App-React_Springboot-Java/">Todo App</a>
-                    <div className="collapse navbar-collapse parent">
-                        <ul className="navbar-nav">
-                            <li className="nav-item fs-5"><router-link className="nav-link" to="/">Home</router-link></li>
-                            <li className="nav-item fs-5"><router-link className="nav-link" to="/user/-1">Add User
-                                </router-link></li>
-                            <h2 className="child">Validooo</h2>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            </div>
-    </header>
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <a
+      class="navbar-brand"
+      href="https://validooo.github.io/FullStack-TodoManagement-App-React_Springboot-Java/"
+      >TodoApp</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse parent" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" role="presentation">
+          <router-link class="nav-link" to="/">Home</router-link>
+        </li>
+
+        <li class="nav-item" role="presentation">
+          <router-link class="nav-link" to="/user/-1">Add Flight</router-link>
+        </li>
+
+        <h2 class="child">Validooo</h2>
+      </ul>
+      <button class="btn btn-outline-dark">Sign Out</button>
+    </div>
+  </nav>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
 .parent {
-    position: relative;
-    width: 100%; /* Set an appropriate width */
-  }
+  position: relative;
+  width: 100%; /* Set an appropriate width */
+}
 
 .child {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(200, 167, 202);
-    padding: 5px;
-    border: 1px solid gray;
-  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(200, 167, 202);
+  padding: 5px;
+  border: 1px solid gray;
+}
 </style>
