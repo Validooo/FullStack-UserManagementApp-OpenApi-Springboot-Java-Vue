@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { store } from "../store";
 export default {
     data() {
     return {
@@ -44,8 +45,10 @@ export default {
 
       if (this.username === validUsername && this.password === validPassword) {
         // Successful login
-        this.$router.push('/home');
         this.loginFailed = false;
+        store.isAuthenticated = true;
+        this.$router.push('/home');
+        
       } else {
        
         this.loginFailed = true;
@@ -67,11 +70,11 @@ export default {
 }
 
 .login-container {
-  max-width: 700px;
+  max-width: 800px;
   margin: auto;
  
   border: 1px solid #ccc;
-   padding: 100px;
+   padding: 140px;
  
   border-radius: 5px;
 }

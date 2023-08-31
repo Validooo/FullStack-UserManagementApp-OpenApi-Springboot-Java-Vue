@@ -18,25 +18,45 @@
     </button>
     <div class="collapse navbar-collapse parent" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item" role="presentation">
+
+
+        <li class="nav-item" role="presentation" v-if="isAuthenticated">
           <router-link class="nav-link" to="/home">Home</router-link>
         </li>
 
         <li class="nav-item" role="presentation">
-          <router-link class="nav-link" to="/user/-1">Add User</router-link>
+          <router-link class="nav-link" to="/user/-1" v-if="isAuthenticated">Add User</router-link>
         </li>
+       
 
         <h2 class="child">Validooo</h2>
       </ul>
-      <button class="btn btn-outline-dark">
-        <router-link class="nav-link" to="/">Sign Out</router-link>
+      <button class="btn btn-outline-dark" @click="signout()"  v-if="isAuthenticated">
+      Sign Out
         </button>
     </div>
   </nav>
 </template>
 
 <script>
-export default {};
+import { store } from "../store";
+export default { data() {
+
+    return {
+      isAuthenticatedd: store.isAuthenticated
+    }
+  },  computed: {
+    isAuthenticated() {
+      return store.isAuthenticated; // Compute a value based on originalValue
+    },
+  },methods:{
+    signout() {
+      this.$router.push('/');
+      store.isAuthenticated =false
+    }
+  }
+}
+  
 </script>
 
 <style>

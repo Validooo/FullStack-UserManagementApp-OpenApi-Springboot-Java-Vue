@@ -9,4 +9,5 @@ export const store = reactive({
   id: 3,
   updatedUserId: -1,
   newUserCreated: false,
+  isAuthenticated:false
 });

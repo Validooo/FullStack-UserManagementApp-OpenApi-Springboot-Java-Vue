@@ -1,4 +1,5 @@
 <template>
+  <div class="form-wrapper">
   <div class="form-container">
     <h2 class="form-title">User Information</h2>
     <div class="form-group">
@@ -41,6 +42,7 @@
       Update
     </button>
   </div>
+</div>
 </template>
 
 <script>
@@ -191,9 +193,9 @@ export default {
 
 <style scoped>
 .form-container {
-  max-width: 400px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 30px;
+  padding: 160px;
   border: 1px solid #eaeaea;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -207,6 +209,7 @@ export default {
 }
 
 .form-group {
+  
   margin-bottom: 20px;
 }
 
@@ -244,5 +247,15 @@ export default {
 
 .custom-button:active {
   background-color: #1e6091;
+}
+
+.form-wrapper {
+ position: relative;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+
+  /* Background color for the whole page */
 }
 </style>
