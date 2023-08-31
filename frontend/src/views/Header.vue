@@ -23,7 +23,7 @@
         </li>
 
         <li class="nav-item" role="presentation">
-          <router-link class="nav-link" to="/user/-1">Add Userr</router-link>
+          <router-link class="nav-link" to="/user/-1">Add User</router-link>
         </li>
 
         <h2 class="child">Validooo</h2>
