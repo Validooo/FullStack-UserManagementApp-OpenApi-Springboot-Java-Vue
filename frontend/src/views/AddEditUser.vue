@@ -25,6 +25,9 @@
         required
       />
     </div>
+    <div>
+      <span v-if="invalidAge" class="error-message">This Field must not be empty</span>
+  </div>
 
     <div class="form-group">
       <label for="email" class="form-label">Email:</label>
@@ -69,8 +72,8 @@ export default {
       userId: null,
       editmode: false,
       isConnected: false,
-      isEmailValid: false
-    
+      isEmailValid: false,
+      invalidAge: false
     };
   },
   computed: {
@@ -216,7 +219,9 @@ export default {
       const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     const emailValid = emailPattern.test(this.email);
     this.isEmailValid = !emailValid;
-return emailValid
+    this.invalidAge = !this.age !== null
+    console.log(this.age !== null)
+return emailValid && this.age !== null
     },
  
   },
@@ -284,6 +289,7 @@ return emailValid
   color: red;
   display: block; /* Display the error message as a block element for better spacing */
   margin-top: 5px; /* Add some space between the input and the error message */
+  margin-bottom: 20px;
 }
 
 .form-wrapper {
