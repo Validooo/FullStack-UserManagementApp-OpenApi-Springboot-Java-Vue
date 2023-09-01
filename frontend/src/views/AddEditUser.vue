@@ -10,6 +10,7 @@
         type="text"
         class="form-input"
         placeholder="Enter your name"
+        required
       />
     </div>
 
@@ -21,6 +22,7 @@
         type="number"
         class="form-input"
         placeholder="Enter your age"
+        required
       />
     </div>
 
@@ -29,18 +31,23 @@
       <input
         v-model.number="email"
         id="email"
-        type="text"
+        type="email"
         class="form-input"
         placeholder="Enter your email"
       /> 
+      
     </div>
-
+    <div>
+      <span v-if="isEmailValid" class="error-message">Invalid email format</span>
+  </div>
+<div>
     <button @click="submitForm" class="custom-button" v-if="!editmode">
       Submit
     </button>
     <button @click="updateUser" class="custom-button" v-if="editmode">
       Update
     </button>
+  </div>
   </div>
 </div>
 </template>
@@ -62,6 +69,7 @@ export default {
       userId: null,
       editmode: false,
       isConnected: false,
+      isEmailValid: false
     
     };
   },
@@ -187,9 +195,9 @@ export default {
         });
     },
     createUserInStore() {
-     
-
-      const newUser={
+     const Isvalid = this.validateInputs()
+      if(Isvalid){
+        const newUser={
         id: this.getCountIds +1,
         name: this.name,
         age: this.age,
@@ -199,8 +207,18 @@ export default {
       store.commit('changeCountIds',this.getCountIds + 1)
       store.commit('changeNewUserCreatedStatus',true)
       store.commit('changeUpdatedUserId',-1) 
+  
       this.$router.push("/home");
+      }
+
+  
+    },validateInputs(){
+      const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    const emailValid = emailPattern.test(this.email);
+    this.isEmailValid = !emailValid;
+return emailValid
     },
+ 
   },
 };
 </script>
@@ -261,6 +279,11 @@ export default {
 
 .custom-button:active {
   background-color: #1e6091;
+}
+.error-message {
+  color: red;
+  display: block; /* Display the error message as a block element for better spacing */
+  margin-top: 5px; /* Add some space between the input and the error message */
 }
 
 .form-wrapper {

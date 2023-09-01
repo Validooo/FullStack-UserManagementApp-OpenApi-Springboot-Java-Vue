@@ -109,6 +109,7 @@ export default {
             console.log(error);
           });
       } else {
+        this.message = ""
         const founduser = this.getUserById(id);
         const userListFiltered = this.getusers.filter(
           (person) => person.id !== id
