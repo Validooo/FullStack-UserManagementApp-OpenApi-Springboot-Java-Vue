@@ -48,7 +48,8 @@
 <script>
 // @ is an alias to /src
 import axios from "axios";
-import { store } from "../store";
+
+
 
 export default {
   name: "AddUser",
@@ -60,8 +61,13 @@ export default {
       userId: null,
       editmode: false,
       isConnected: false,
-      user: null,
+    
     };
+  },
+  computed:{
+         users(){
+        return  this.$store.state.users
+         }
   },
   created() {
     this.userId = this.$route.params.id;
@@ -86,7 +92,7 @@ export default {
         });
     },
     getUserDetailseFromStore() {
-      const founduser = store.user.find(
+      const founduser = this.users.find(
         (user) => user.id.toString() === this.userId
       );
       this.name = founduser.name;
@@ -134,7 +140,7 @@ export default {
           age: this.age,
           email: this.email,
         };
-        store.user[this.userId - 1] = userDataa;
+        users[this.userId - 1] = userDataa;
         store.updatedUserId = this.userId;
         store.newUserCreated= false;
         this.$router.push("/");
@@ -177,7 +183,7 @@ export default {
     },
     createUserInStore() {
       store.id = store.id + 1;
-      store.user.push({
+      users.push({
         id: store.id,
         name: this.name,
         age: this.age,

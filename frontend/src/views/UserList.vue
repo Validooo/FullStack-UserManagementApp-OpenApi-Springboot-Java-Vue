@@ -47,7 +47,7 @@
 // @ is an alias to /src
 
 import axios from "axios";
-import { store } from "../store";
+import { store } from "../store"
 
 export default {
   name: "UserList",
@@ -64,6 +64,10 @@ export default {
   },
   created() {
     this.checkAndFetch();
+  },computed:{
+    users(){
+        return store.getters.getusers
+         }
   },
   methods: {
     async fetchData() {
@@ -79,7 +83,8 @@ export default {
             console.log(error);
           });
       } else {
-        this.userList = store.user;
+        console.log(this.users)
+        this.userList = this.users;
         this.checkIfUserUpdated()
         this.checkIfUserCreate()
       }
@@ -103,10 +108,10 @@ export default {
           });
       } else {
         const founduser = this.getUserById(id);
-        const userListFiltered = store.user.filter(
+        const userListFiltered = this.users.filter(
           (person) => person.id !== id
         );
-        store.user = userListFiltered;
+        this.users = userListFiltered;
         this.message = `Delete User "${founduser.name}" with id="${id}"`;
         this.fetchData();
         this.showErrorMessage = true;
@@ -131,21 +136,21 @@ export default {
         this.message = "";
         this.updatedUserId = -1;
         this.showUpdateMessage = false
-        store.updatedUserId = -1;
+        store.state.updatedUserId = -1;
         this.showCreateMessage = false,
         store.newUserCreated = false;
       }, 55000); // Delay of 3000 milliseconds (3 seconds)
     },
     checkIfUserUpdated() {
-      if (store.updatedUserId !== -1) {
-        const user = this.getUserById(store.updatedUserId)
-        this.message = `Update User "${user.name}" with id="${store.updatedUserId}"`;
+      if (store.state.updatedUserId !== -1) {
+        const user = this.getUserById(store.state.updatedUserId)
+        this.message = `Update User "${user.name}" with id="${store.state.updatedUserId}"`;
         this.showUpdateMessage = true
         this.removeMessage();
       }
     }, checkIfUserCreate(){
-      console.log(store.newUserCreated)
-if(store.newUserCreated === true){
+      console.log(store.state.newUserCreated)
+if(store.state.newUserCreated === true){
 this.message = `Create new User "${this.getLastUserCreated().name}" with id="${this.getLastUserCreated().id}"`
 this.showCreateMessage = true;
 this.removeMessage();
@@ -155,7 +160,7 @@ this.removeMessage();
       if (this.isConnected) {
         return this.todos.find((user) => user.id === id);
       } else {
-        return store.user.find((user) => user.id === id);
+        return this.users.find((user) => user.id === id);
       }
     }, getLastUserCreated(){
       return this.userList[this.userList.length-1];

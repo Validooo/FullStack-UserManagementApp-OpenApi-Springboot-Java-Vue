@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import UserList from "../views/UserList.vue";
 import AddEditUser from "../views/AddEditUser.vue";
 import Login from "../views/Login.vue"
-import { store } from "../store";
+import { store } from "../store"
 const routes = [
   {
     path: "/",
