@@ -2,7 +2,7 @@
 import { createStore } from 'vuex'
 
 export const store = createStore({
- state() { return { users: [
+ state: {  users: [
     { id: 1, name: "John", age: 25, email: "John@gmail.com" },
     { id: 2, name: "Paul", age: 30, email: "Paul@gmail.com" },
     { id: 3, name: "Ronald", age: 28, email: "Ronald@mail.de" },
@@ -11,7 +11,7 @@ export const store = createStore({
   updatedUserId: -1,
   newUserCreated: false,
   isAuthenticated:false,
-}
+
 }
 ,
 getters:{

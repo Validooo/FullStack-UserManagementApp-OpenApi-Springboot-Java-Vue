@@ -48,6 +48,7 @@
 
 import axios from "axios";
 import { store } from "../store"
+import { mapGetters } from 'vuex';
 
 export default {
   name: "UserList",
@@ -64,11 +65,13 @@ export default {
   },
   created() {
     this.checkAndFetch();
-  },computed:{
-    users(){
-        return store.getters.getusers
-         }
-  },
+  },computed: {
+  
+  ...mapGetters([
+      'getusers','getUpdatedUserId','newUserCreatedCheck'
+    ])
+  }
+  ,
   methods: {
     async fetchData() {
       if (this.isConnected) {
@@ -83,8 +86,8 @@ export default {
             console.log(error);
           });
       } else {
-        console.log(this.users)
-        this.userList = this.users;
+        console.log(this.getusers)
+        this.userList = this.getusers;
         this.checkIfUserUpdated()
         this.checkIfUserCreate()
       }
@@ -108,10 +111,10 @@ export default {
           });
       } else {
         const founduser = this.getUserById(id);
-        const userListFiltered = this.users.filter(
+        const userListFiltered = this.getusers.filter(
           (person) => person.id !== id
         );
-        this.users = userListFiltered;
+        this.getusers = userListFiltered;
         this.message = `Delete User "${founduser.name}" with id="${id}"`;
         this.fetchData();
         this.showErrorMessage = true;
@@ -136,21 +139,21 @@ export default {
         this.message = "";
         this.updatedUserId = -1;
         this.showUpdateMessage = false
-        store.state.updatedUserId = -1;
+        this.getUpdatedUserId = -1;
         this.showCreateMessage = false,
         store.newUserCreated = false;
       }, 55000); // Delay of 3000 milliseconds (3 seconds)
     },
     checkIfUserUpdated() {
-      if (store.state.updatedUserId !== -1) {
-        const user = this.getUserById(store.state.updatedUserId)
-        this.message = `Update User "${user.name}" with id="${store.state.updatedUserId}"`;
+      if (this.getUpdatedUserId !== -1) {
+        const user = this.getUserById(this.getUpdatedUserId)
+        this.message = `Update User "${user.name}" with id="${this.getUpdatedUserId}"`;
         this.showUpdateMessage = true
         this.removeMessage();
       }
     }, checkIfUserCreate(){
-      console.log(store.state.newUserCreated)
-if(store.state.newUserCreated === true){
+      console.log(this.newUserCreatedCheck)
+if(this.newUserCreatedCheck === true){
 this.message = `Create new User "${this.getLastUserCreated().name}" with id="${this.getLastUserCreated().id}"`
 this.showCreateMessage = true;
 this.removeMessage();
@@ -160,7 +163,7 @@ this.removeMessage();
       if (this.isConnected) {
         return this.todos.find((user) => user.id === id);
       } else {
-        return this.users.find((user) => user.id === id);
+        return this.getusers.find((user) => user.id === id);
       }
     }, getLastUserCreated(){
       return this.userList[this.userList.length-1];
