@@ -30,6 +30,11 @@ getters:{
   isAuthenticatedCheck(state){
     return state.isAuthenticated
   }
+}, mutations:{
+  changeAuthentication(state,status){
+    state.isAuthenticated = status
+
+  }
 }
 
 

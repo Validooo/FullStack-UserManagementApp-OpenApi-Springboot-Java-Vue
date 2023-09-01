@@ -29,6 +29,7 @@
 
 <script>
 import { store } from "../store"
+import { mapGetters } from 'vuex';
 export default {
     data() {
     return {
@@ -46,7 +47,7 @@ export default {
       if (this.username === validUsername && this.password === validPassword) {
         // Successful login
         this.loginFailed = false;
-        store.isAuthenticated = true;
+        store.commit('changeAuthentication',true)
         this.$router.push('/home');
         
       } else {
@@ -54,7 +55,12 @@ export default {
         this.loginFailed = true;
       }
     },
-  },
+  },computed: {
+  
+  ...mapGetters([
+    'isAuthenticatedCheck'
+    ])
+  }
 }
 </script>
 

@@ -33,7 +33,7 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !store.isAuthenticated) {
+  if (to.meta.requiresAuth && !store.state.isAuthenticated) {
     // If the route requires authentication and the user is not authenticated
     next('/'); // Redirect to login page
   } else {
