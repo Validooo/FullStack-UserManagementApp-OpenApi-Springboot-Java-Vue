@@ -47,7 +47,9 @@ getters:{
   }, updateUser(state,user){
  const index =   state.users.findIndex((element) => element.id.toString() === user.id);
     state.users[index] = user
-
+  }, deleteUser(state,id){
+   
+state.users=    state.users.filter(element => element.id !== id)
   }
 }
 

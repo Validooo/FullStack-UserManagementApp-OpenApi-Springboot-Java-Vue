@@ -86,7 +86,6 @@ export default {
             console.log(error);
           });
       } else {
-        console.log(this.getusers)
         this.userList = this.getusers;
         this.checkIfUserUpdated()
         this.checkIfUserCreate()
@@ -114,7 +113,7 @@ export default {
         const userListFiltered = this.getusers.filter(
           (person) => person.id !== id
         );
-        this.getusers = userListFiltered;
+        store.commit('deleteUser',id)
         this.message = `Delete User "${founduser.name}" with id="${id}"`;
         this.fetchData();
         this.showErrorMessage = true;
@@ -147,14 +146,13 @@ export default {
     },
     checkIfUserUpdated() {
       if (this.getUpdatedUserId !== -1) {
-        console.log(this.getUpdatedUserId)
         const user = this.getUserById(this.getUpdatedUserId)
         this.message = `Update User "${user.name}" with id="${this.getUpdatedUserId}"`;
         this.showUpdateMessage = true
         this.removeMessage();
       }
     }, checkIfUserCreate(){
-      console.log(this.newUserCreatedCheck)
+
 if(this.newUserCreatedCheck === true){
 this.message = `Create new User "${this.getLastUserCreated().name}" with id="${this.getLastUserCreated().id}"`
 this.showCreateMessage = true;
@@ -165,10 +163,8 @@ this.removeMessage();
       if (this.isConnected) {
         return this.todos.find((user) => user.id === id);
       } else {
-        console.log(id)
-        console.log("length")
-        console.log(this.getusers.length)
-        return this.getusers.find((user) => user.id.toString() === id);
+    
+        return this.getusers.find((user) => user.id.toString() === id.toString());
       }
     }, getLastUserCreated(){
       return this.userList[this.userList.length-1];
