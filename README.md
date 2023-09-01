@@ -17,6 +17,7 @@
 
 
 <h2> Features:</h2>
+
 * The Vue app online version uses Vuex store to store the data.
 * Input Validation
 * Login Authentication and Route Protection (Please use the username 'Validoo' and the password 'password' to sign in).
@@ -26,16 +27,19 @@
 
 
 <h2> Notes: </h2>
+
 * The OpenAPI Generator plugin is defined in the pom.xml file.
 * The database is configured in the application.properties file.
 * The YAML file is located in the resources folder.
 
   <h2>Deploying to GitHub Pages:</h2>  
+  
 * The GitHub Pages link is automatically built after each push to GitHub using GitHub Actions.
 
   
   
   <h2>Reference: </h2>
+  
 * This project used the following tutorial as a reference: https://medium.com/swlh/vue3-using-ref-or-reactive-88d47c8f6944.
 
 <h2>Screenshots</h2>
