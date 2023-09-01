@@ -68,7 +68,7 @@ export default {
   computed: {
   
   ...mapGetters([
-    'getCountIds',
+    'getCountIds','getusers'
     ])
   },
   created() {
@@ -94,7 +94,7 @@ export default {
         });
     },
     getUserDetailseFromStore() {
-      const founduser = this.users.find(
+      const founduser = this.getusers.find(
         (user) => user.id.toString() === this.userId
       );
       this.name = founduser.name;
@@ -142,7 +142,8 @@ export default {
           age: this.age,
           email: this.email,
         };
-        users[this.userId - 1] = userDataa;
+        store.commit('updateUser',userDataa);
+      
         store.commit('changeUpdatedUserId',this.userId) 
         store.commit('changeNewUserCreatedStatus',false)
         this.$router.push("/");
@@ -187,7 +188,7 @@ export default {
      
   
       const newUser={
-        id: this.getCountIds,
+        id: this.getCountIds +1,
         name: this.name,
         age: this.age,
         email: this.email,
