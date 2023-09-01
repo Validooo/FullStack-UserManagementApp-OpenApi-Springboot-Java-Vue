@@ -142,6 +142,8 @@ export default {
         this.getUpdatedUserId = -1;
         this.showCreateMessage = false,
         store.commit('changeNewUserCreatedStatus',false) 
+        store.commit('changeUpdatedUserId',-1) 
+
     
       }, 5000); // Delay of 3000 milliseconds (3 seconds)
     },
