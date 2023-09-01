@@ -20,18 +20,18 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
 
-        <li class="nav-item" role="presentation" v-if="isAuthenticated">
+        <li class="nav-item" role="presentation" v-if="this.isAuthenticatedCheck">
           <router-link class="nav-link" to="/home">Home</router-link>
         </li>
 
         <li class="nav-item" role="presentation">
-          <router-link class="nav-link" to="/user/-1" v-if="isAuthenticated">Add User</router-link>
+          <router-link class="nav-link" to="/user/-1" v-if="this.isAuthenticatedCheck">Add User</router-link>
         </li>
        
 
         <h2 class="child">Validooo</h2>
       </ul>
-      <button class="btn btn-outline-dark" @click="signout()"  v-if="isAuthenticated">
+      <button class="btn btn-outline-dark" @click="signout()"  v-if="this.isAuthenticatedCheck">
       Sign Out
         </button>
     </div>
@@ -40,19 +40,17 @@
 
 <script>
 import { store } from "../store"
-export default { data() {
+import { mapGetters } from 'vuex';
+export default {
 
-    return {
-      isAuthenticatedd: store.isAuthenticated
-    }
-  },  computed: {
-    isAuthenticated() {
-      return store.isAuthenticated; // Compute a value based on originalValue
-    },
+   computed: {
+  ...mapGetters([
+    'isAuthenticatedCheck'
+    ])
   },methods:{
     signout() {
       this.$router.push('/');
-      store.isAuthenticated =false
+      store.commit('changeAuthentication',false)
     }
   }
 }

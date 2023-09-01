@@ -55,11 +55,6 @@ export default {
         this.loginFailed = true;
       }
     },
-  },computed: {
-  
-  ...mapGetters([
-    'isAuthenticatedCheck'
-    ])
   }
 }
 </script>
