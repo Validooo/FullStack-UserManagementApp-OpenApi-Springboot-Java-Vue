@@ -48,8 +48,9 @@
 <script>
 // @ is an alias to /src
 import axios from "axios";
+import { store } from "../store"
 
-
+import { mapGetters } from 'vuex';
 
 export default {
   name: "AddUser",
@@ -64,10 +65,11 @@ export default {
     
     };
   },
-  computed:{
-         users(){
-        return  this.$store.state.users
-         }
+  computed: {
+  
+  ...mapGetters([
+    'getCountIds',
+    ])
   },
   created() {
     this.userId = this.$route.params.id;
@@ -126,8 +128,8 @@ export default {
             this.name = "";
             this.age = null;
             this.email = "";
-            store.updatedUserId = this.userId;
-            store.newUserCreated= false;
+            store.commit('changeUpdatedUserId',this.userId) 
+            store.commit('changeNewUserCreatedStatus',false)
             this.$router.push("/");
           })
           .catch((error) => {
@@ -141,8 +143,8 @@ export default {
           email: this.email,
         };
         users[this.userId - 1] = userDataa;
-        store.updatedUserId = this.userId;
-        store.newUserCreated= false;
+        store.commit('changeUpdatedUserId',this.userId) 
+        store.commit('changeNewUserCreatedStatus',false)
         this.$router.push("/");
       }
     },
@@ -173,8 +175,8 @@ export default {
           this.name = "";
           this.age = null;
           this.email = "";
-          store.newUserCreated= true;
-          store.updatedUserId = -1;
+          store.commit('changeNewUserCreatedStatus',true)
+          store.commit('changeUpdatedUserId',-1) 
           this.$router.push("/");
         })
         .catch((error) => {
@@ -182,16 +184,19 @@ export default {
         });
     },
     createUserInStore() {
-      store.id = store.id + 1;
-      users.push({
-        id: store.id,
+     
+  
+      const newUser={
+        id: this.getCountIds,
         name: this.name,
         age: this.age,
         email: this.email,
-      });
-      store.newUserCreated= true;
-      store.updatedUserId = -1;
-      this.$router.push("/");
+      }
+      store.commit('addNewUser',newUser)
+      store.commit('changeCountIds',this.getCountIds + 1)
+      store.commit('changeNewUserCreatedStatus',true)
+      store.commit('changeUpdatedUserId',-1) 
+      this.$router.push("/home");
     },
   },
 };

@@ -33,7 +33,17 @@ getters:{
 }, mutations:{
   changeAuthentication(state,status){
     state.isAuthenticated = status
-
+  },
+  changeCountIds(state,newCount){
+    state.countIds= newCount
+  },
+  changeNewUserCreatedStatus(state,status){
+    state.newUserCreated = status
+  },changeUpdatedUserId(state,id){
+    state.updatedUserId = id
+  },
+  addNewUser(state,newUser){
+    state.users.push(newUser)
   }
 }
 
