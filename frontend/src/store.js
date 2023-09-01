@@ -45,8 +45,9 @@ getters:{
   addNewUser(state,newUser){
     state.users.push(newUser)
   }, updateUser(state,user){
- const index =   state.users.findIndex((element) => element.id === user.id);
-    state.users[index] =newUser
+ const index =   state.users.findIndex((element) => element.id.toString() === user.id);
+    state.users[index] = user
+
   }
 }
 

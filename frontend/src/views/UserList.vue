@@ -147,6 +147,7 @@ export default {
     },
     checkIfUserUpdated() {
       if (this.getUpdatedUserId !== -1) {
+        console.log(this.getUpdatedUserId)
         const user = this.getUserById(this.getUpdatedUserId)
         this.message = `Update User "${user.name}" with id="${this.getUpdatedUserId}"`;
         this.showUpdateMessage = true
@@ -164,7 +165,10 @@ this.removeMessage();
       if (this.isConnected) {
         return this.todos.find((user) => user.id === id);
       } else {
-        return this.getusers.find((user) => user.id === id);
+        console.log(id)
+        console.log("length")
+        console.log(this.getusers.length)
+        return this.getusers.find((user) => user.id.toString() === id);
       }
     }, getLastUserCreated(){
       return this.userList[this.userList.length-1];

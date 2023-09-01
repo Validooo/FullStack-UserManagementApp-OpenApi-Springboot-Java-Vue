@@ -32,7 +32,7 @@
         type="text"
         class="form-input"
         placeholder="Enter your email"
-      />
+      /> 
     </div>
 
     <button @click="submitForm" class="custom-button" v-if="!editmode">
@@ -114,6 +114,7 @@ export default {
       }
     },
     updateUser() {
+      
       const userData = {
         name: this.name,
         age: this.age,
@@ -136,6 +137,7 @@ export default {
             console.error("Error updating user data:", error);
           });
       } else {
+      
         const userDataa = {
           id: this.userId,
           name: this.name,
@@ -146,7 +148,7 @@ export default {
       
         store.commit('changeUpdatedUserId',this.userId) 
         store.commit('changeNewUserCreatedStatus',false)
-        this.$router.push("/");
+        this.$router.push("/home");
       }
     },
     checkConnection() {
@@ -186,7 +188,7 @@ export default {
     },
     createUserInStore() {
      
-  
+
       const newUser={
         id: this.getCountIds +1,
         name: this.name,
