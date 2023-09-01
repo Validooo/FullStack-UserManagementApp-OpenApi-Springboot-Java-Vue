@@ -55,3 +55,9 @@
 
 <b>5-User Deleted</b>
 <img src="pictures/delete-user.png" >
+
+<b>6-Validate Input</b>
+<img src="pictures/validate-inputs.png" >
+
+<b>7-Login Page</b>
+<img src="pictures/login-page.png" >
