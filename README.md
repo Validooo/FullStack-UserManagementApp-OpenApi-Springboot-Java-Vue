@@ -26,6 +26,7 @@
 
 
 
+
 <h2> Notes: </h2>
 
 * The OpenAPI Generator plugin is defined in the pom.xml file.
